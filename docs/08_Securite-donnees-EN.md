@@ -1,6 +1,6 @@
 # Data security — sparkso-certification
 
-English mirror of [securite-donnees.md](securite-donnees.md): any
+English mirror of [08_Securite-donnees-FR.md](08_Securite-donnees-FR.md): any
 change to one file must be reflected in the other.
 
 What the system guarantees, what it does not, where the secrets live,

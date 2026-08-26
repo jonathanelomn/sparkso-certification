@@ -1,6 +1,6 @@
 # Sécurité des données — sparkso-certification
 
-Miroir anglais : [securite-donnees.en.md](securite-donnees.en.md) —
+Miroir anglais : [08_Securite-donnees-EN.md](08_Securite-donnees-EN.md) —
 toute modification de l'un des deux fichiers se répercute dans l'autre.
 
 Ce que le système garantit, ce qu'il ne garantit pas, où vivent les

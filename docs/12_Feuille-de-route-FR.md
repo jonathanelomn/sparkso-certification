@@ -2,7 +2,7 @@
 
 Où va le projet, dans quel ordre, et selon quel principe. Document
 vivant : tenu à jour à chaque jalon, en cohérence avec les
-[avancements mensuels](avancements-2026-08.md).
+[avancements mensuels](15_Avancements-2026-08-FR.md).
 
 ## Le principe directeur
 

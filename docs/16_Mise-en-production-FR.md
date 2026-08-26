@@ -3,7 +3,7 @@
 Comment un système **sans infrastructure** se met en production, ce
 qu'une plateforme doit préparer, et comment vivent les environnements
 de test et de production. Complète [EXTRACTION.md](../EXTRACTION.md)
-(le contrat d'intégration) et [installation.md](installation.md) (la
+(le contrat d'intégration) et [05_Installation-FR.md](05_Installation-FR.md) (la
 pose des outils).
 
 ## 1. Ce que « production » veut dire ici
@@ -12,7 +12,7 @@ sparkso-certification n'a **rien qui tourne** : pas de serveur, pas de
 base, pas de service à surveiller. Mettre en production, c'est :
 
 1. installer la CLI `temoin` **sur une machine de la plateforme** (voir
-   [installation.md](installation.md)) ;
+   [05_Installation-FR.md](05_Installation-FR.md)) ;
 2. publier la **page de vérification** sur le site public de
    l'instance (un fichier HTML à poser, rien de plus) ;
 3. organiser, côté plateforme, le **rangement et les sauvegardes** de
@@ -36,7 +36,7 @@ si elle sait produire un lot et ranger des fichiers, elle sait ancrer.
       (bouton « Télécharger mon témoin », EXTRACTION.md §3).
 - [ ] L'équipe sait dire la promesse exacte : « au plus tard au bloc
       B », jamais une date-heure
-      ([capacités et limites](capacites-et-limites.md)).
+      ([capacités et limites](09_Capacite-et-limites-FR.md)).
 
 ## 3. Test et production : deux environnements, un contrat
 

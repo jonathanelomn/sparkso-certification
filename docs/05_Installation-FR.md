@@ -23,7 +23,7 @@ npm install
 `npm install` ne télécharge qu'**une seule dépendance** : la
 bibliothèque officielle `opentimestamps` (utilisée uniquement par les
 commandes qui touchent au réseau — voir la
-[sécurité des données](securite-donnees.md), section 6).
+[sécurité des données](08_Securite-donnees-FR.md), section 6).
 
 ## 3. Vérifier que tout fonctionne
 

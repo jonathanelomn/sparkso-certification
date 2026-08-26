@@ -1,6 +1,6 @@
 # Guide utilisateur — sparkso-certification
 
-Miroir anglais : [guide-utilisateur.en.md](guide-utilisateur.en.md) —
+Miroir anglais : [04_Guide-utilisateur-EN.md](04_Guide-utilisateur-EN.md) —
 toute modification de l'un des deux fichiers se répercute dans l'autre.
 
 Ce guide s'adresse d'abord à la personne qui **détient un témoin** (un

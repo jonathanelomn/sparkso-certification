@@ -75,16 +75,18 @@ livrée.
 
 ## Documentation vivante (docs/)
 
-Même convention que sparkso-universites : `docs/guide-utilisateur.md`,
-`docs/plan-de-test.md`, `docs/securite-donnees.md`, plus, depuis le
-27 août 2026 : `expression-des-besoins.md`, `installation.md`,
-`capacites-et-limites.md`, `feuille-de-route.md`,
-`mise-en-production.md`, `charte-graphique.md`, et les miroirs anglais
-`guide-utilisateur.en.md` / `securite-donnees.en.md` (**règle du
+Même convention **et même nomenclature numérotée** que
+sparkso-universites (même numéro = même sujet, suffixe de langue
+`-FR`/`-EN`) : `01_Expression_des_besoins.md`, `03_Plan_de_test.md`,
+`04_Guide-utilisateur-FR.md` + `-EN`, `05_Installation-FR.md`,
+`08_Securite-donnees-FR.md` + `-EN`, `09_Capacite-et-limites-FR.md`,
+`12_Feuille-de-route-FR.md`, `14_Charte-graphique-FR.md`,
+`15_Avancements-AAAA-MM-FR.md` (un par mois, à créer s'il n'existe
+pas), `16_Mise-en-production-FR.md`. Numéros absents à dessein : 02 est
+`SPEC.md` (l'interface, à la racine) ; 06, 07, 10, 11 et 13 sont des
+documents propres à la plateforme, hors de ce dépôt. **Règle du
 miroir** : toute modification d'un fichier traduit se répercute dans
-l'autre langue, comme pour le vérifieur). Plus un document
-d'avancements par mois (`docs/avancements-AAAA-MM.md`, à créer s'il
-n'existe pas). **Toute évolution notable est consignée dans le document
+l'autre langue, comme pour le vérifieur. **Toute évolution notable est consignée dans le document
 d'avancements du mois au moment où elle est livrée**, et met à jour le
 guide, le plan de test ou la sécurité si elle les concerne. Rédaction
 pédagogique, comme le reste.

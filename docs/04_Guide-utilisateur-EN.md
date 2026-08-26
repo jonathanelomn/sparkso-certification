@@ -1,6 +1,6 @@
 # User guide — sparkso-certification
 
-English mirror of [guide-utilisateur.md](guide-utilisateur.md): any
+English mirror of [04_Guide-utilisateur-FR.md](04_Guide-utilisateur-FR.md): any
 change to one file must be reflected in the other.
 
 This guide is written first for the person who **holds a witness** (a

@@ -4,7 +4,7 @@ Ce document résume les avancements de sparkso-certification, période par
 période, dans l'esprit du document homonyme de Sparkso Universités :
 chaque section dit ce qui change concrètement. Il est tenu à jour **à
 chaque évolution notable** ; un nouveau fichier est ouvert chaque mois
-(`avancements-AAAA-MM.md`).
+(`15_Avancements-AAAA-MM-FR.md`).
 
 ## 1. Le socle complet, de la règle du jeu à la preuve réelle (21–22 août)
 
@@ -110,3 +110,14 @@ graphique. Le guide utilisateur et la sécurité des données gagnaient
 leur **miroir anglais** (règle : toute modification de l'un se
 répercute dans l'autre). Au passage, une erreur corrigée dans la
 sécurité des données : le sel fait 32 octets (SPEC §5.1), pas 16.
+
+## 9. La documentation prenait la nomenclature commune (27 août)
+
+Les documents de `docs/` reprenaient la nomenclature numérotée de
+Sparkso Universités — même numéro pour même sujet, suffixe de langue
+`-FR`/`-EN` (`01_Expression_des_besoins.md`, `04_Guide-utilisateur-FR.md`,
+`16_Mise-en-production-FR.md`…). Les numéros absents le sont à
+dessein : 02 est `SPEC.md` (l'interface, qui reste à la racine) ; 06,
+07, 10, 11 et 13 désignent des documents propres à la plateforme, qui
+vivent dans le dépôt sparkso-universites. Toutes les références
+croisées suivaient.
