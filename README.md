@@ -26,6 +26,7 @@ avec la spec seule.
 
 ```
 SPEC.md              la spécification v1 — l'interface du système
+SPEC-ESSAI.md        complément : l'attestation « essai » (ancrage d'essai)
 EXTRACTION.md        le lot d'extraction : comment une plateforme alimente le système
 PROPOSITION-EVM.md   proposition (à discuter) : ancrage secondaire sur chaîne EVM
 lib/                 le cœur : canonique(), Merkle, témoin — zéro dépendance
@@ -33,7 +34,9 @@ cli/                 ancrer / completer / verifier / temoin
 verifieur/           page statique auto-suffisante (un fichier HTML par langue,
                      testée sur téléphone — voir verifieur/MOBILE.md)
 exemples/            fichiers d'essai et leurs témoins
-docs/                guide utilisateur, plan de test, sécurité, avancements
+docs/                besoins, installation, guide utilisateur (FR/EN), plan de
+                     test, sécurité (FR/EN), capacités et limites, mise en
+                     production, feuille de route, charte graphique, avancements
 ```
 
 ## Frontière du projet

@@ -1,5 +1,8 @@
 # Sécurité des données — sparkso-certification
 
+Miroir anglais : [securite-donnees.en.md](securite-donnees.en.md) —
+toute modification de l'un des deux fichiers se répercute dans l'autre.
+
 Ce que le système garantit, ce qu'il ne garantit pas, où vivent les
 secrets, et les menaces auxquelles la conception répond. En langage
 courant ; les fondements formels sont dans [SPEC.md](../SPEC.md)
@@ -29,7 +32,8 @@ révèle rien.
 ## 3. Le sel : le secret qui protège les empreintes
 
 Chaque enregistrement reçoit un **sel** : un grand nombre aléatoire
-secret (16 octets), mélangé aux données avant le calcul d'empreinte.
+secret (32 octets, SPEC §5.1), mélangé aux données avant le calcul
+d'empreinte.
 Sans lui, un curieux pourrait « deviner » des données simples en
 essayant toutes les possibilités (une note sur 20 : vingt essais) et en
 comparant les empreintes. Avec lui, l'essai exhaustif devient

@@ -1,5 +1,8 @@
 # Guide utilisateur — sparkso-certification
 
+Miroir anglais : [guide-utilisateur.en.md](guide-utilisateur.en.md) —
+toute modification de l'un des deux fichiers se répercute dans l'autre.
+
 Ce guide s'adresse d'abord à la personne qui **détient un témoin** (un
 étudiant, une famille, un employeur qui a reçu le fichier) ; sa
 dernière partie s'adresse aux équipes qui **intègrent** le système dans

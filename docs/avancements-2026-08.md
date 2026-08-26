@@ -89,3 +89,24 @@ telles quelles. Seule la marque produit change.
 Le site vitrine [sparkso.build](https://sparkso.build) présente le
 produit sous son nouveau nom, avec de vraies captures du vérifieur
 (accueil et résultat de vérification de l'exemple de la SPEC).
+
+## 7. L'ancrage d'essai se concevait (27 août)
+
+Besoin exprimé : des environnements de test et de production, et le
+rafraîchissement de la test depuis la prod pour répéter sans risque.
+La réponse tient dans le mécanisme d'extension que la SPEC v1
+prévoyait : un type d'attestation « essai », local et instantané, qui
+ne dépose rien au registre public — donc rien à « désancrer », jamais.
+Le complément [../SPEC-ESSAI.md](../SPEC-ESSAI.md) est rédigé (type
+`essai`, garde anti-mélange, contrat test/prod) ; **en relecture avant
+implémentation** — la SPEC v1 reste intacte.
+
+## 8. La documentation se complétait (27 août)
+
+En s'inspirant de la trame documentaire de Sparkso Universités, six
+documents rejoignaient `docs/` : expression des besoins, installation,
+capacités et limites, feuille de route, mise en production, charte
+graphique. Le guide utilisateur et la sécurité des données gagnaient
+leur **miroir anglais** (règle : toute modification de l'un se
+répercute dans l'autre). Au passage, une erreur corrigée dans la
+sécurité des données : le sel fait 32 octets (SPEC §5.1), pas 16.

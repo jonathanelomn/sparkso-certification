@@ -24,6 +24,13 @@ la modifier** (un témoin de 2026 doit se vérifier en 2036) ;
   racine `b133a459…867b` ancrée au **bloc Bitcoin 963516**, vérifiée par
   les outils officiels OpenTimestamps (voir exemples/README.md).
 
+En cours (27 août 2026) : **ancrage d'essai** — complément
+`SPEC-ESSAI.md` rédigé et validé sur le principe (type d'attestation
+`essai`, local, sans dépôt public ; contrat test/prod et
+rafraîchissement de la test depuis la prod), implémentation à faire
+après relecture du complément (CLI `--essai`, bandeau orange sur les
+deux pages du vérifieur, section « Environnements » d'EXTRACTION.md).
+
 Pistes suivantes probables : section « Ancrage » côté sparkso-universites
 (le contrat est dans EXTRACTION.md §3) ; extension EVM (SPEC §11, type
 d'attestation réservé — sans changement de format) : le brouillon du
@@ -69,7 +76,13 @@ livrée.
 ## Documentation vivante (docs/)
 
 Même convention que sparkso-universites : `docs/guide-utilisateur.md`,
-`docs/plan-de-test.md`, `docs/securite-donnees.md`, plus un document
+`docs/plan-de-test.md`, `docs/securite-donnees.md`, plus, depuis le
+27 août 2026 : `expression-des-besoins.md`, `installation.md`,
+`capacites-et-limites.md`, `feuille-de-route.md`,
+`mise-en-production.md`, `charte-graphique.md`, et les miroirs anglais
+`guide-utilisateur.en.md` / `securite-donnees.en.md` (**règle du
+miroir** : toute modification d'un fichier traduit se répercute dans
+l'autre langue, comme pour le vérifieur). Plus un document
 d'avancements par mois (`docs/avancements-AAAA-MM.md`, à créer s'il
 n'existe pas). **Toute évolution notable est consignée dans le document
 d'avancements du mois au moment où elle est livrée**, et met à jour le

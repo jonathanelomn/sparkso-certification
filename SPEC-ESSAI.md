@@ -108,7 +108,9 @@ soit des attestations réelles — jamais les deux.
 - `temoin ancrer` (réel) sur un lot ancré en essai : refus, avec
   explication.
 - `temoin completer` sur un lot d'essai : la commande explique qu'un
-  essai n'a rien à compléter.
+  essai n'a rien à compléter, et sort en **succès** (il n'y a rien à
+  faire — utile pour les scénarios automatisés qui enchaînent les
+  commandes sans distinguer essai et réel).
 
 Pour passer d'un essai au réel, on **réémet** le lot
 (`temoin emettre`) : les sels seront nouveaux, et c'est voulu — un
