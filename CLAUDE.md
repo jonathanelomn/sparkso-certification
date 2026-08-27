@@ -61,17 +61,21 @@ sa section 8 — ne rien implémenter avant validation.
 
 `verifieur/index.html` (FR) et `verifieur/en.html` (EN) sont des copies
 miroirs : **toute modification de l'une doit être répercutée dans
-l'autre**. Style imposé (décision du 22 août 2026 — lisibilité en plein
-soleil sur téléphone, registre du document officiel ; le thème sombre
-d'origine faisait « futuriste » pour le public visé) : fond clair
-#f7faf9 à peine teinté de vert, halos pastel vert/violet, onglets
-pilule, accent vert soutenu #0e8a58, logo Sparkso = hexagone de
-19 hexagones décliné en vert, soutenu au centre. Aucune ressource
-externe (ni police, ni image liée — les captures du guide sont
-embarquées en data-URI ; les captures « réelles » du guide doivent
-montrer la page dans son thème courant). Le volet « Le parcours d'un
-témoin » sert de tableau de suivi : le tenir à jour à chaque brique
-livrée.
+l'autre**. Style imposé (décision du 27 août 2026, détail dans
+`docs/14_Charte-graphique-FR.md`) : **copie complète du langage
+d'écran de sparkso-universites** — familles encre/canard/parchemin/
+sauge-ambre-terre, typographie 20/16/14/12 px en poids 400/500/600,
+cartes blanches rayon 16 px à ombre unique, boutons 8 px (encre plein
+pour conclure), verdicts au format bandeau (sauge/ambre/terre),
+capsule d'onglets en pastilles, signature « Conçu et développé par
+Sparkso ». Le thème reste unique et clair (décision du 22 août 2026 :
+lisibilité en plein soleil, registre du document officiel). Logo
+Sparkso = hexagone de 19 hexagones décliné en canard, soutenu au
+centre. Aucune ressource externe (ni police, ni image liée — les
+captures du guide sont embarquées en data-URI ; les captures
+« réelles » du guide doivent montrer la page dans son thème courant).
+Le volet « Le parcours d'un témoin » sert de tableau de suivi : le
+tenir à jour à chaque brique livrée.
 
 ## Documentation vivante (docs/)
 

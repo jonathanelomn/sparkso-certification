@@ -121,3 +121,28 @@ dessein : 02 est `SPEC.md` (l'interface, qui reste à la racine) ; 06,
 07, 10, 11 et 13 désignent des documents propres à la plateforme, qui
 vivent dans le dépôt sparkso-universites. Toutes les références
 croisées suivaient.
+
+## 10. Le vérifieur parlait le langage de la plateforme (27 août)
+
+Décision d'alignement : les deux pages du vérifieur reprennent **à
+l'identique** le langage d'écran de Sparkso Universités — les quatre
+familles (encre pour la structure, canard pour l'accent, parchemin
+pour les neutres chauds, sauge/ambre/terre pour les états), la
+typographie à quatre tailles et trois poids, les cartes à ombre
+unique, les boutons, la capsule d'onglets en pastilles et la signature
+du studio. Les verdicts passent au format « bandeau » de la
+plateforme : sauge (conforme ancré), ambre (en attente), terre (non
+conforme) ; l'orange reste réservé au futur bandeau d'essai. Le guide
+pas à pas y gagne une cohérence complète : les captures de la
+plateforme IUGM et celles du vérifieur montrent désormais la même
+identité. Les captures embarquées ont été refaites dans le nouveau
+thème (règle de la charte), l'audit mobile rejoué (une ligne
+d'onglets qui glisse, aucun débordement), les dix tests repassés. La
+charte ([14_Charte-graphique-FR.md](14_Charte-graphique-FR.md)) est
+réécrite en conséquence et la décision du 22 août (thème clair,
+lisible en plein soleil) demeure.
+
+Au passage, `npm test` devenait portable : le motif générique du
+script ne fonctionnait que sous Node 22 (et pas sous Node 18-20,
+pourtant promis par l'installation) ; le script nomme désormais le
+fichier de tests explicitement.
