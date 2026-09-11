@@ -25,8 +25,8 @@ export async function ancrerRacine(racineOctets) {
   // (réseau coupé, proxy) — la lib officielle n'en fait pas une erreur,
   // nous si (constaté le 10/09/2026 : un .ots de 84 octets écrit sur
   // quatre refus).
-  const calendriers = detache.timestamp
-    .getAttestations()
+  const calendriers = Array.from(detache.timestamp
+    .getAttestations())
     .filter(a => a instanceof OTS.Notary.PendingAttestation).length;
   if (calendriers === 0) {
     throw new Error(
