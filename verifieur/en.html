@@ -248,6 +248,11 @@
   /* La signature du studio : toujours en note discrète, jamais en
      concurrence avec le contenu. */
   .signature, .signature a { color: var(--parchemin-400); }
+  .verdict table.donnees { border-collapse: collapse; margin: .6rem 0 .2rem; font-size: 14px; }
+  .verdict table.donnees th { text-align: left; font-weight: 600; padding: .25rem .9rem .25rem 0; vertical-align: top; white-space: nowrap; }
+  .verdict table.donnees td { padding: .25rem 0; word-break: break-word; }
+  details.technique { margin-top: .8rem; }
+  details.technique > summary { cursor: pointer; font-size: 13px; }
 </style>
 </head>
 <body>
@@ -1143,10 +1148,32 @@ async function lancerVerification(texte) {
       element('p', { texte: 'The recomputation does not confirm this witness: it was ' +
         'either altered or malformed. The step-by-step detail is below.' })));
   } else if (ancrage.completes.length > 0) {
+    // Le verdict en langage courant d'abord (Sparkso Universités,
+    // 11/09/2026 : « pas vraiment pratique pour un élève, ou une
+    // entreprise ») : une phrase, les données scellées lisibles, et le
+    // technique — racine, bloc, preuve — sous un pli.
     const verdict = element('div', { class: 'verdict ok' },
-      element('h2', { texte: 'Consistent with its witness' }));
+      element('h2', { texte: 'This receipt is authentic' }));
+    const premier = ancrage.completes[0];
+    verdict.append(element('p', {},
+      'The data below existed at the latest when Bitcoin block ', element('strong', { texte: String(premier.bloc) }), ' was mined, and has not been modified since.'));
+    try {
+      const objet = JSON.parse(temoin.canonique);
+      if (objet && typeof objet === 'object' && !Array.isArray(objet)) {
+        const table = element('table', { class: 'donnees' });
+        for (const [cle, valeur] of Object.entries(objet)) {
+          const libelle = cle.replace(/_/g, ' ').replace(/^./, c => c.toUpperCase());
+          table.append(element('tr', {},
+            element('th', { texte: libelle }),
+            element('td', { texte: typeof valeur === 'string' ? valeur : JSON.stringify(valeur) })));
+        }
+        verdict.append(table);
+      }
+    } catch (_erreur) { /* le champ canonique est relu plus bas, tel quel */ }
+    const technique = element('details', { class: 'technique' },
+      element('summary', { texte: 'Technical details: root, block, proof' }));
     for (const attestation of ancrage.completes) {
-      verdict.append(element('p', {},
+      technique.append(element('p', {},
         'Root ', element('code', { texte: temoin.racine }),
         ' to be observed in Bitcoin block ',
         element('strong', { texte: String(attestation.bloc) }), '.'));
@@ -1174,12 +1201,10 @@ async function lancerVerification(texte) {
         });
         liens.append(bouton);
       }
-      verdict.append(liens);
+      technique.append(liens);
     }
-    verdict.append(element('p', { class: 'note',
-      texte: 'The link between the root and the block is carried by the .ots proof; ' +
-        'its full check is done with the official OpenTimestamps client ' +
-        '(ots verify), outside the browser in v1.' }));
+    technique.append(element('p', { class: 'note', texte: 'The link between the root and the block is carried by the .ots proof; its full check is done with the official OpenTimestamps client (ots verify), outside the browser in v1.' }));
+    verdict.append(technique);
     fragments.push(verdict);
   } else {
     const raison = ancrage.incompletes > 0
@@ -1217,7 +1242,12 @@ async function lancerVerification(texte) {
           'is anchored — it is what provides the proof of anteriority.' }));
     liste.append(item);
   }
-  fragments.push(liste);
+  if (conforme) {
+    fragments.push(element('details', { class: 'technique' },
+      element('summary', { texte: 'How this page verified it, step by step' }), liste));
+  } else {
+    fragments.push(liste);
+  }
 
   // Sealed data, readable.
   const bloc = element('details', {},
@@ -1239,6 +1269,31 @@ async function lancerVerification(texte) {
 }
 
 /* ---------- Events ---------- */
+
+// Un lien de vérification porte le témoin après le « # » (base64url du
+// JSON) : le navigateur n'envoie jamais cette partie au serveur, la
+// promesse « rien n'est envoyé nulle part » tient. C'est ce que copie
+// « Partager » dans l'espace de l'élève (Sparkso Universités, 11/09/2026).
+function temoinDuLien() {
+  const h = location.hash;
+  if (!h.startsWith('#t=')) return null;
+  try {
+    const b64 = h.slice(3).replace(/-/g, '+').replace(/_/g, '/');
+    const brut = atob(b64 + '='.repeat((4 - (b64.length % 4)) % 4));
+    return new TextDecoder().decode(Uint8Array.from(brut, c => c.charCodeAt(0)));
+  } catch (_erreur) {
+    return null;
+  }
+}
+function verifierDepuisLien() {
+  const texte = temoinDuLien();
+  if (!texte) return;
+  champTexte.value = texte;
+  lancerVerification(texte);
+}
+window.addEventListener('hashchange', verifierDepuisLien);
+window.addEventListener('DOMContentLoaded', verifierDepuisLien);
+if (document.readyState !== 'loading') verifierDepuisLien();
 
 zoneDepot.addEventListener('click', () => champFichier.click());
 zoneDepot.addEventListener('keydown', evenement => {
