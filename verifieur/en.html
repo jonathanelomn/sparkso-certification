@@ -1104,6 +1104,10 @@ function element(balise, attributs, ...enfants) {
 
 function afficherErreur(message) {
   sectionResultat.hidden = false;
+  // Le verdict naît sous les boutons, souvent sous la ligne de flottaison :
+  // sans ce défilement, un clic sur « Vérifier » semblait ne rien faire
+  // (recette Sparkso Universités, 11/09/2026).
+  sectionResultat.scrollIntoView({ behavior: 'smooth', block: 'start' });
   sectionResultat.replaceChildren(
     element('div', { class: 'verdict echec' },
       element('h2', { texte: 'Unreadable witness' }),
@@ -1224,6 +1228,10 @@ async function lancerVerification(texte) {
   if (typeof temoin.canonique === 'string') fragments.push(bloc);
 
   sectionResultat.hidden = false;
+  // Le verdict naît sous les boutons, souvent sous la ligne de flottaison :
+  // sans ce défilement, un clic sur « Vérifier » semblait ne rien faire
+  // (recette Sparkso Universités, 11/09/2026).
+  sectionResultat.scrollIntoView({ behavior: 'smooth', block: 'start' });
   sectionResultat.replaceChildren(...fragments);
   sectionDonnees.hidden = !conforme;
   resultatDonnees.textContent = '';
