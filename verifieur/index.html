@@ -1179,7 +1179,9 @@ async function lancerVerification(texte) {
       if (objet && typeof objet === 'object' && !Array.isArray(objet)) {
         const table = element('table', { class: 'donnees' });
         for (const [cle, valeur] of Object.entries(objet)) {
-          const libelle = cle.replace(/_/g, ' ').replace(/^./, c => c.toUpperCase());
+          // les clés usuelles d'EXTRACTION.md ont leur libellé ; les autres se lisent telles quelles
+          const LIBELLES = { annee: 'Année', classe: 'Classe', constate_le: 'Constaté le', etablissement: 'Établissement', etudiant: 'Étudiant', nom: 'Nom', prenom: 'Prénom', type: 'Type', periode: 'Période', matiere: 'Matière', note: 'Note', moyenne: 'Moyenne', session: 'Session' };
+          const libelle = LIBELLES[cle] || cle.replace(/_/g, ' ').replace(/^./, c => c.toUpperCase());
           table.append(element('tr', {},
             element('th', { texte: libelle }),
             element('td', { texte: typeof valeur === 'string' ? valeur : JSON.stringify(valeur) })));
