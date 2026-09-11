@@ -87,7 +87,8 @@ The full cycle on the platform side, with the command-line tool
 1. `temoin emettre` — seal a batch of records: witnesses issued, root
    computed (no network);
 2. `temoin ancrer` — deposit the root via OpenTimestamps (the only
-   step that touches the network);
+   step that touches the network); every witness immediately carries the
+   pending proof — if no calendar can be reached, nothing is written;
 3. `temoin completer` — a few hours later, complete the proof with the
    confirmed Bitcoin block;
 4. `temoin verifier` — check a witness end to end.

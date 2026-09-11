@@ -12,14 +12,30 @@ const OTS = require('opentimestamps');
 
 /**
  * Dépose une racine (32 octets) auprès des calendriers OpenTimestamps
- * publics. Retourne les octets du fichier .ots — une preuve INCOMPLÈTE :
- * elle ne référence que les calendriers, en attendant la confirmation
- * Bitcoin (quelques heures).
+ * publics. Retourne { octets, calendriers } : les octets du fichier .ots —
+ * une preuve INCOMPLÈTE, qui ne référence que les calendriers, en
+ * attendant la confirmation Bitcoin (quelques heures) — et le nombre de
+ * calendriers qui ont accepté. Lève une erreur si aucun n'a accepté.
  */
 export async function ancrerRacine(racineOctets) {
   const detache = OTS.DetachedTimestampFile.fromHash(new OTS.Ops.OpSHA256(), racineOctets);
   await OTS.stamp(detache);
-  return Buffer.from(detache.serializeToBytes());
+  // Une preuve sans calendrier est une coquille vide : rien ne viendra
+  // jamais la compléter. Ça arrive quand tous les calendriers refusent
+  // (réseau coupé, proxy) — la lib officielle n'en fait pas une erreur,
+  // nous si (constaté le 10/09/2026 : un .ots de 84 octets écrit sur
+  // quatre refus).
+  const calendriers = detache.timestamp
+    .getAttestations()
+    .filter(a => a instanceof OTS.Notary.PendingAttestation).length;
+  if (calendriers === 0) {
+    throw new Error(
+      'Aucun calendrier OpenTimestamps n\'a accepté la racine : la preuve n\'a pas été écrite. ' +
+      'Vérifiez l\'accès à internet (les calendriers sont a.pool.opentimestamps.org, ' +
+      'b.pool.opentimestamps.org, a.pool.eternitywall.com, ots.btc.catallaxy.com) et relancez.',
+    );
+  }
+  return { octets: Buffer.from(detache.serializeToBytes()), calendriers };
 }
 
 /**

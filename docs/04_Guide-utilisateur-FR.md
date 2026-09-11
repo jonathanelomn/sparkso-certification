@@ -82,7 +82,8 @@ Le cycle complet côté plateforme, avec l'outil en ligne de commande
 1. `temoin emettre` — sceller un lot d'enregistrements : témoins émis,
    racine calculée (aucun réseau) ;
 2. `temoin ancrer` — déposer la racine via OpenTimestamps (seul moment
-   qui touche au réseau) ;
+   qui touche au réseau) ; chaque témoin reçoit aussitôt la preuve, en
+   attente — sans calendrier joignable, rien n'est écrit ;
 3. `temoin completer` — quelques heures plus tard, compléter la preuve
    avec le bloc Bitcoin confirmé ;
 4. `temoin verifier` — contrôler un témoin de bout en bout.
