@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="color-scheme" content="light">
-<title>Witnesses — understand, follow and verify</title>
+<title>Verify a witness</title>
 <!--
   ENGLISH version of verifieur/index.html — keep BOTH files in sync when
   editing either one. The witness file format itself is language-neutral:
@@ -253,51 +253,79 @@
   .verdict table.donnees td { padding: .25rem 0; word-break: break-word; }
   details.technique { margin-top: .8rem; }
   details.technique > summary { cursor: pointer; font-size: 13px; }
+
+  /* ---- Refonte du 12/09/2026 : le langage des pages publiques de la
+     plateforme — l'entête de l'établissement, la carte du geste au centre,
+     l'attestation après le verdict, les explications en liens de pied. ---- */
+  nav.onglets { display: none !important; }
+  body { background: var(--parchemin-50); }
+  main { max-width: 640px; margin: 0 auto; padding: 22px 20px 32px; }
+  .haut { display: flex; align-items: center; gap: 12px; margin-bottom: 22px; }
+  .haut .logo { width: 44px; height: 44px; border-radius: 9999px; background: var(--encre-100); border: 2px solid var(--encre-200); flex: none; overflow: hidden; }
+  .haut .logo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .haut b { display: block; font-size: 14px; color: var(--parchemin-900); font-weight: 600; line-height: 1.2; }
+  .haut b a { color: inherit; text-decoration: none; }
+  .haut small { font-size: 12px; color: var(--parchemin-500); }
+  .haut .langue { margin-left: auto; font-size: 12px; color: var(--parchemin-500); text-decoration: none; }
+  .carte { background: #fff; border: 1px solid var(--parchemin-200); border-radius: 16px; padding: 18px 20px; margin: 0 0 14px; }
+  .carte h2 { margin: 0 0 4px; font-size: 17px; font-weight: 600; color: var(--parchemin-900); }
+  .carte .sous { margin: 0 0 14px; font-size: 13px; line-height: 1.45; color: var(--parchemin-500); }
+  #zone-depot.depot { display: flex; flex-direction: column; align-items: center; gap: 3px; border: 1.5px solid var(--parchemin-300); border-radius: 12px; padding: 18px; margin: 0; background: var(--parchemin-50); text-align: center; cursor: pointer; }
+  #zone-depot.depot.survol, #zone-depot.depot:focus-visible { border-color: var(--encre-300); background: var(--encre-50); outline: none; }
+  .depot .ic { width: 34px; height: 34px; border-radius: 9999px; background: var(--encre-50); color: var(--encre-700); display: flex; align-items: center; justify-content: center; margin-bottom: 4px; }
+  .depot .ic svg { width: 18px; height: 18px; }
+  .depot b { color: var(--parchemin-900); font-size: 14px; font-weight: 600; }
+  .depot small { font-size: 12px; color: var(--parchemin-500); }
+  .ou { text-align: center; margin: 10px 0; font-size: 12px; color: var(--parchemin-500); }
+  .champ { display: block; border: 1px solid var(--parchemin-300); border-radius: 12px; padding: 10px 14px; }
+  .champ .etq { display: block; font-size: 10.5px; letter-spacing: .06em; text-transform: uppercase; color: var(--parchemin-600); font-weight: 600; margin-bottom: 4px; }
+  .champ textarea { width: 100%; box-sizing: border-box; border: 0; padding: 0; margin: 0; min-height: 64px; background: transparent; font: 12.5px/1.45 var(--mono); resize: vertical; outline: none; color: var(--parchemin-900); }
+  .actions { display: flex; flex-direction: column; align-items: stretch; gap: 8px; margin-top: 14px; }
+  .actions .principal { width: 100%; background: var(--encre-50); color: var(--encre-700); border: 0; border-radius: 9999px; padding: 12px; font-weight: 600; font-size: 14px; cursor: pointer; }
+  .actions .principal:hover { background: var(--encre-100); }
+  .actions .liens { display: flex; justify-content: center; gap: 14px; }
+  .actions button.lien { background: none; border: 0; color: var(--encre-700); text-decoration: underline; font-size: 12.5px; padding: 0; cursor: pointer; }
+  .carte.fichier[hidden] { display: none; }
+  .carte.fichier { display: flex; align-items: center; gap: 12px; background: var(--sauge-50); border-color: var(--sauge-100); padding: 14px 18px; }
+  .carte.fichier .ic { width: 30px; height: 30px; border-radius: 9999px; background: var(--sauge-700); color: #fff; display: flex; align-items: center; justify-content: center; flex: none; font-weight: 600; }
+  .carte.fichier b { font: 12.5px/1.35 var(--mono); color: var(--parchemin-900); overflow-wrap: anywhere; font-weight: 600; }
+  .carte.fichier small { margin-left: auto; font-size: 12px; white-space: nowrap; }
+  .carte.fichier small a { color: var(--encre-700); }
+  .attest { background: #fff; border: 1px solid var(--encre-200); border-radius: 16px; overflow: hidden; margin: 0 0 12px; }
+  .att-haut { display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-bottom: 1px solid var(--parchemin-100); }
+  .att-haut b { display: block; font-size: 14px; color: var(--parchemin-900); font-weight: 600; }
+  .att-haut small { font-size: 12px; color: var(--parchemin-500); }
+  .badge-ok { margin-left: auto; display: inline-flex; align-items: center; gap: 6px; background: var(--sauge-50); color: var(--sauge-800); border-radius: 9999px; padding: 4px 10px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  .att-corps { padding: 18px 18px 14px; }
+  .att-corps .nom { font-size: 22px; font-weight: 600; color: var(--parchemin-900); line-height: 1.2; }
+  .att-corps .num { font: 13px var(--mono); color: var(--parchemin-500); margin: 2px 0 10px; }
+  .att-corps p { margin: 0; font-size: 13.5px; line-height: 1.5; color: var(--parchemin-700); }
+  .att-corps table { border-collapse: collapse; width: 100%; font-size: 13px; }
+  .att-corps th { text-align: left; font-weight: 600; color: var(--parchemin-700); padding: 6px 10px 6px 0; border-bottom: 1px solid var(--parchemin-100); white-space: nowrap; width: 130px; vertical-align: top; }
+  .att-corps td { padding: 6px 0; border-bottom: 1px solid var(--parchemin-100); color: var(--parchemin-900); overflow-wrap: anywhere; }
+  .att-pied { background: var(--parchemin-50); border-top: 1px solid var(--parchemin-100); padding: 10px 18px; font-size: 12.5px; color: var(--parchemin-600); }
+  .att-pied b { color: var(--parchemin-900); }
+  details.technique { background: var(--parchemin-50); border: 1px solid var(--parchemin-200); border-radius: 10px; padding: 8px 12px; margin: 6px 0; }
+  details.technique > summary { font-size: 12.5px; color: var(--parchemin-700); cursor: pointer; }
+  .pied { font-size: 12px; line-height: 1.55; text-align: center; margin: 22px 10px 0; color: var(--parchemin-500); }
+  .pied b { color: var(--parchemin-700); }
+  .pied a { color: var(--encre-700); }
+  .retour { margin: 0 0 14px; font-size: 13px; }
+  details.notes-fin { margin-top: 14px; }
+  #section-donnees hr { display: none; }
+  #section-donnees input[type=file] { margin: 8px 0; font-size: 12.5px; }
+  details.notes-fin p { font-size: 12.5px; line-height: 1.5; color: var(--parchemin-600); }
+  .retour a { color: var(--encre-700); }
 </style>
 </head>
 <body>
 <main>
-  <p class="marque">
-    <!-- The Sparkso mark: a hexagon of 19 hexagons, in green. -->
-    <svg class="logo" width="30" height="30" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-      <g fill="#2DD4BF">
-        <polygon points="14,2.85 14.996,3.425 14.996,4.575 14,5.15 13.004,4.575 13.004,3.425"/>
-        <polygon points="18.33,5.35 19.326,5.925 19.326,7.075 18.33,7.65 17.334,7.075 17.334,5.925"/>
-        <polygon points="22.66,7.85 23.656,8.425 23.656,9.575 22.66,10.15 21.664,9.575 21.664,8.425"/>
-        <polygon points="22.66,12.85 23.656,13.425 23.656,14.575 22.66,15.15 21.664,14.575 21.664,13.425"/>
-        <polygon points="22.66,17.85 23.656,18.425 23.656,19.575 22.66,20.15 21.664,19.575 21.664,18.425"/>
-        <polygon points="18.33,20.35 19.326,20.925 19.326,22.075 18.33,22.65 17.334,22.075 17.334,20.925"/>
-        <polygon points="14,22.85 14.996,23.425 14.996,24.575 14,25.15 13.004,24.575 13.004,23.425"/>
-        <polygon points="9.67,20.35 10.666,20.925 10.666,22.075 9.67,22.65 8.674,22.075 8.674,20.925"/>
-        <polygon points="5.34,17.85 6.336,18.425 6.336,19.575 5.34,20.15 4.344,19.575 4.344,18.425"/>
-        <polygon points="5.34,12.85 6.336,13.425 6.336,14.575 5.34,15.15 4.344,14.575 4.344,13.425"/>
-        <polygon points="5.34,7.85 6.336,8.425 6.336,9.575 5.34,10.15 4.344,9.575 4.344,8.425"/>
-        <polygon points="9.67,5.35 10.666,5.925 10.666,7.075 9.67,7.65 8.674,7.075 8.674,5.925"/>
-      </g>
-      <g fill="#0D9488">
-        <polygon points="14,7.3 15.472,8.15 15.472,9.85 14,10.7 12.528,9.85 12.528,8.15"/>
-        <polygon points="18.33,9.8 19.802,10.65 19.802,12.35 18.33,13.2 16.858,12.35 16.858,10.65"/>
-        <polygon points="18.33,14.8 19.802,15.65 19.802,17.35 18.33,18.2 16.858,17.35 16.858,15.65"/>
-        <polygon points="14,17.3 15.472,18.15 15.472,19.85 14,20.7 12.528,19.85 12.528,18.15"/>
-        <polygon points="9.67,14.8 11.142,15.65 11.142,17.35 9.67,18.2 8.198,17.35 8.198,15.65"/>
-        <polygon points="9.67,9.8 11.142,10.65 11.142,12.35 9.67,13.2 8.198,12.35 8.198,10.65"/>
-      </g>
-      <polygon fill="#115E59"
-        points="14,11.8 15.905,12.9 15.905,15.1 14,16.2 12.095,15.1 12.095,12.9"/>
-    </svg>
-    <span>Sparkso<span class="demi">-certification</span></span>
+  <div class="haut" id="etab">
+    <span class="logo" id="etab-logo"></span>
+    <div><b id="etab-nom">Sparkso Certification</b><small id="etab-sous">Witness verification</small></div>
     <a class="langue" href="index.html" lang="fr" hreflang="fr">FR</a>
-  </p>
-
-  <header>
-    <h1><span class="grise">Certified records,</span><br>verifiable by anyone</h1>
-    <p class="sous-titre">
-      Understand, follow and verify publicly anchored witnesses —
-      without having to trust the platform that issued them.
-    </p>
-  </header>
-
-  <nav class="onglets" role="tablist">
+  </div>
+  <nav class="onglets" hidden role="tablist">
     <button role="tab" aria-selected="true" data-volet="volet-verifier">Verify a witness</button>
     <button role="tab" aria-selected="false" data-volet="volet-comprendre">Understand the system</button>
     <button role="tab" aria-selected="false" data-volet="volet-parcours">A witness's journey</button>
@@ -306,39 +334,36 @@
 
   <!-- ================== TAB: VERIFY ================== -->
   <section id="volet-verifier">
-    <h2>Your witness, verified right here</h2>
-    <p class="note">
-      All computation happens in your browser (Web Crypto API).
-      <strong>Nothing is sent anywhere</strong>: you can confirm this in
-      the network tab of your developer tools, or use this page offline.
-      A witness is the "receipt" handed over when data is sealed — new
-      here? Start with the
-      <a href="#" data-aller="volet-comprendre">Understand the system</a> tab.
-    </p>
-
-    <div id="zone-depot" class="depot" role="button" tabindex="0"
-         aria-label="Drop or choose a witness JSON file">
-      <p><strong><span class="si-souris">Drop a witness JSON file here</span><span
-        class="si-tactile">Your witness JSON file</span></strong></p>
-      <p class="note"><span class="si-souris">or click</span><span
-        class="si-tactile">tap</span> to choose a file</p>
-      <input id="fichier-temoin" type="file" accept=".json,application/json" hidden>
+    <div class="carte" id="carte-depot">
+      <h2>Verify a witness</h2>
+      <p class="sous">A witness is the receipt handed over with a certified document. Drop it here: the page verifies it on your device, without sending anything.</p>
+      <div id="zone-depot" class="depot" role="button" tabindex="0" aria-label="Drop or choose the witness file">
+        <span class="ic"><svg viewBox="0 0 256 256" fill="currentColor" aria-hidden="true"><path d="M240,136v64a16,16,0,0,1-16,16H32a16,16,0,0,1-16-16V136a16,16,0,0,1,16-16H80a8,8,0,0,1,0,16H32v64H224V136H176a8,8,0,0,1,0-16h48A16,16,0,0,1,240,136ZM85.66,77.66,120,43.31V128a8,8,0,0,0,16,0V43.31l34.34,34.35a8,8,0,0,0,11.32-11.32l-48-48a8,8,0,0,0-11.32,0l-48,48A8,8,0,0,0,85.66,77.66Z"/></svg></span>
+        <b>Drop the witness</b>
+        <small>the .temoin.json file handed over by the institution, or its link</small>
+        <input id="fichier-temoin" type="file" accept=".json,application/json" hidden>
+      </div>
+      <p class="ou">or</p>
+      <label class="champ"><span class="etq">Paste the witness here</span>
+        <textarea id="texte-temoin" spellcheck="false" placeholder='{ "format": 1, "hachage": "sha-256", … }'></textarea></label>
+      <div class="actions">
+        <button id="btn-verifier" class="principal">Verify</button>
+        <div class="liens">
+          <button id="btn-exemple" type="button" class="lien">Try with an example</button>
+          <button id="btn-effacer" type="button" class="lien">Clear</button>
+        </div>
+      </div>
     </div>
-
-    <textarea id="texte-temoin" spellcheck="false"
-      placeholder='…or paste the witness here: { "format": 1, "hachage": "sha-256", … }'></textarea>
-
-    <div class="actions">
-      <button id="btn-verifier" class="principal">Verify</button>
-      <button id="btn-exemple" type="button">Try the example from the specification</button>
-      <button id="btn-effacer" type="button">Clear</button>
+    <div class="carte fichier" id="carte-fichier" hidden>
+      <span class="ic">✓</span><b id="nom-fichier"></b><small><a href="#" id="changer-fichier">change</a></small>
     </div>
 
     <section id="resultat" hidden></section>
 
     <section id="section-donnees" hidden>
-      <hr>
-      <h2>Compare with the original data (optional)</h2>
+      <details class="technique">
+        <summary>Compare with the original data (optional)</summary>
+
       <p class="note">
         The witness carries its own copy of the data (the
         <code>canonique</code> field). If you hold the original sealed
@@ -348,11 +373,13 @@
       </p>
       <input id="fichier-donnees" type="file">
       <p id="resultat-donnees"></p>
+      </details>
     </section>
   </section>
 
   <!-- ================== TAB: UNDERSTAND ================== -->
   <section id="volet-comprendre" hidden>
+    <p class="retour"><a href="#" data-aller="volet-verifier">← Back to verification</a></p>
     <h2>The goal, in one sentence</h2>
     <p>
       Make it possible to prove, later and to anyone, that <strong>a
@@ -518,6 +545,7 @@
 
   <!-- ================== TAB: JOURNEY ================== -->
   <section id="volet-parcours" hidden>
+    <p class="retour"><a href="#" data-aller="volet-verifier">← Back to verification</a></p>
     <h2>A witness's life, in six stages</h2>
     <p class="note">
       From document to verifiable receipt: what happens, in order, at
@@ -659,6 +687,7 @@
 
   <!-- ================== TAB: STEP-BY-STEP GUIDE ================== -->
   <section id="volet-guide" hidden>
+    <p class="retour"><a href="#" data-aller="volet-verifier">← Back to verification</a></p>
     <h2>Verify your witness, step by step</h2>
     <p>
       This guide is for everyone — student, employer, family,
@@ -858,7 +887,8 @@
     </p>
   </section>
 
-  <footer class="note">
+  <details class="technique notes-fin">
+    <summary>What this page proves, exactly</summary>
     <p>
       A valid witness proves exactly: "these bytes existed no later than
       when block B was mined". Never "on such date at such time": the
@@ -873,8 +903,8 @@
       <a href="https://opentimestamps.org/" rel="noopener">official OpenTimestamps client</a> —
       a third party's tool, precisely so you don't have to trust us.
     </p>
-    <p class="signature">Designed and developed by <a href="https://sparkso.build" rel="noopener">Sparkso</a>.</p>
-  </footer>
+  </details>
+  <p class="pied">Verification provided by <b>Sparkso Certification</b>. Everything is computed in your browser, nothing is sent. <a href="#" data-aller="volet-comprendre">Understand the system</a> · <a href="#" data-aller="volet-parcours">A witness’s journey</a> · <a href="#" data-aller="volet-guide">Step-by-step guide</a></p>
 </main>
 
 <script>
@@ -1076,6 +1106,23 @@ async function verifierTemoin(temoin) {
 const zoneDepot = document.getElementById('zone-depot');
 const champFichier = document.getElementById('fichier-temoin');
 const champTexte = document.getElementById('texte-temoin');
+const carteDepot = document.getElementById('carte-depot');
+const carteFichier = document.getElementById('carte-fichier');
+const nomFichier = document.getElementById('nom-fichier');
+// d'où vient le témoin vérifié : un fichier, un collage, un lien, l'exemple
+let sourceNom = '';
+function montrerDepot() {
+  carteDepot.hidden = false;
+  carteFichier.hidden = true;
+  sectionResultat.hidden = true;
+  sectionDonnees.hidden = true;
+  temoinCourant = null;
+}
+document.getElementById('changer-fichier').addEventListener('click', evenement => {
+  evenement.preventDefault();
+  montrerDepot();
+  carteDepot.scrollIntoView({ behavior: 'smooth', block: 'start' });
+});
 const sectionResultat = document.getElementById('resultat');
 const sectionDonnees = document.getElementById('section-donnees');
 const champDonnees = document.getElementById('fichier-donnees');
@@ -1148,30 +1195,59 @@ async function lancerVerification(texte) {
       element('p', { texte: 'The recomputation does not confirm this witness: it was ' +
         'either altered or malformed. The step-by-step detail is below.' })));
   } else if (ancrage.completes.length > 0) {
-    // Le verdict en langage courant d'abord (Sparkso Universités,
-    // 11/09/2026 : « pas vraiment pratique pour un élève, ou une
-    // entreprise ») : une phrase, les données scellées lisibles, et le
-    // technique — racine, bloc, preuve — sous un pli.
-    const verdict = element('div', { class: 'verdict ok' },
-      element('h2', { texte: 'This receipt is authentic' }));
+    // L'ATTESTATION (Sparkso Universités, GO B du 12/09/2026) : ce que voit
+    // une entreprise ressemble à ce qu'elle attendait — l'établissement,
+    // le nom en grand, le numéro, la phrase de l'état, le sceau en pied.
+    // Les champs sont ceux d'EXTRACTION.md ; sans eux, les données se
+    // lisent en tableau. Le technique reste sous un pli.
     const premier = ancrage.completes[0];
-    verdict.append(element('p', {},
-      'The data below existed at the latest when Bitcoin block ', element('strong', { texte: String(premier.bloc) }), ' was mined, and has not been modified since.'));
+    let objet = null;
     try {
-      const objet = JSON.parse(temoin.canonique);
-      if (objet && typeof objet === 'object' && !Array.isArray(objet)) {
-        const table = element('table', { class: 'donnees' });
-        for (const [cle, valeur] of Object.entries(objet)) {
-          // les clés usuelles d'EXTRACTION.md ont leur libellé ; les autres se lisent telles quelles
-          const LIBELLES = { annee: 'Year', classe: 'Class', constate_le: 'Recorded on', etablissement: 'Institution', etudiant: 'Student', nom: 'Last name', prenom: 'First name', type: 'Type', periode: 'Period', matiere: 'Subject', note: 'Mark', moyenne: 'Average', session: 'Session' };
-          const libelle = LIBELLES[cle] || cle.replace(/_/g, ' ').replace(/^./, c => c.toUpperCase());
-          table.append(element('tr', {},
-            element('th', { texte: libelle }),
-            element('td', { texte: typeof valeur === 'string' ? valeur : JSON.stringify(valeur) })));
-        }
-        verdict.append(table);
+      const o = JSON.parse(temoin.canonique);
+      if (o && typeof o === 'object' && !Array.isArray(o)) objet = o;
+    } catch (_erreur) { /* champ canonique relu tel quel plus bas */ }
+    const LIBELLES = { annee: 'Year', classe: 'Class', constate_le: 'Recorded on', etablissement: 'Institution', etudiant: 'Student', nom: 'Last name', prenom: 'First name', type: 'Type', periode: 'Period', matiere: 'Subject', note: 'Mark', moyenne: 'Average', session: 'Session' };
+    const TYPES = { inscription: 'Enrolment certificate', releve: 'Transcript' };
+    const dateLisible = valeur => {
+      const d = typeof valeur === 'string' ? new Date(valeur) : null;
+      return d && !Number.isNaN(d.getTime())
+        ? d.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' })
+        : (valeur ? String(valeur) : '');
+    };
+    const carte = element('div', { class: 'attest' });
+    const titreDoc = objet && objet.type ? (TYPES[objet.type] || String(objet.type)) : 'Certified document';
+    const sousTitre = objet ? [objet.classe, objet.annee, objet.periode].filter(Boolean).join(' · ') : '';
+    carte.append(element('div', { class: 'att-haut' },
+      element('div', {},
+        element('b', { texte: (objet && objet.etablissement) || 'Issuer not stated' }),
+        element('small', { texte: sousTitre ? titreDoc + ' · ' + sousTitre : titreDoc })),
+      element('span', { class: 'badge-ok', texte: '⌘ ' + 'Authentic' })));
+    const corps = element('div', { class: 'att-corps' });
+    const nomComplet = objet ? [objet.nom, objet.prenom].filter(Boolean).join(' ') : '';
+    if (nomComplet) corps.append(element('div', { class: 'nom', texte: nomComplet }));
+    if (objet && objet.etudiant) corps.append(element('div', { class: 'num', texte: String(objet.etudiant) }));
+    const quand = objet ? dateLisible(objet.constate_le) : '';
+    if (objet && objet.type === 'inscription' && objet.classe && objet.annee) {
+      corps.append(element('p', { texte: `Enrolled in ${objet.classe} for the ${objet.annee} year` + (quand ? `, recorded on ${quand}` : '') + '.' }));
+    } else if (objet) {
+      const table = element('table', {});
+      const DEJA = new Set(['etablissement', 'nom', 'prenom', 'etudiant', 'type', 'classe', 'annee', 'periode']);
+      for (const [cle, valeur] of Object.entries(objet)) {
+        if (DEJA.has(cle) && (nomComplet || cle !== 'nom')) continue;
+        const libelle = LIBELLES[cle] || cle.replace(/_/g, ' ').replace(/^./, c => c.toUpperCase());
+        table.append(element('tr', {},
+          element('th', { texte: libelle }),
+          element('td', { texte: cle === 'constate_le' ? dateLisible(valeur) : (typeof valeur === 'string' ? valeur : JSON.stringify(valeur)) })));
       }
-    } catch (_erreur) { /* le champ canonique est relu plus bas, tel quel */ }
+      if (table.children.length > 0) corps.append(table);
+    } else {
+      corps.append(element('pre', { texte: temoin.canonique }));
+    }
+    carte.append(corps);
+    carte.append(element('div', { class: 'att-pied' },
+      'Existed at the latest at Bitcoin block ', element('b', { texte: String(premier.bloc) }), ', unchanged since · ',
+      element('a', { href: 'https://mempool.space/block/' + premier.bloc, target: '_blank', rel: 'noopener', texte: 'view the block' })));
+    fragments.push(carte);
     const technique = element('details', { class: 'technique' },
       element('summary', { texte: 'Technical details: root, block, proof' }));
     for (const attestation of ancrage.completes) {
@@ -1206,8 +1282,7 @@ async function lancerVerification(texte) {
       technique.append(liens);
     }
     technique.append(element('p', { class: 'note', texte: 'The link between the root and the block is carried by the .ots proof; its full check is done with the official OpenTimestamps client (ots verify), outside the browser in v1.' }));
-    verdict.append(technique);
-    fragments.push(verdict);
+    fragments.push(technique);
   } else {
     const raison = ancrage.incompletes > 0
       ? 'The OpenTimestamps proof is still incomplete: it awaits its Bitcoin ' +
@@ -1252,7 +1327,7 @@ async function lancerVerification(texte) {
   }
 
   // Sealed data, readable.
-  const bloc = element('details', {},
+  const bloc = element('details', { class: 'technique' },
     element('summary', { texte: 'See the sealed data (canonique field)' }));
   let joli = temoin.canonique;
   try { joli = JSON.stringify(JSON.parse(temoin.canonique), null, 2); } catch (_erreur) { /* as-is */ }
@@ -1265,6 +1340,9 @@ async function lancerVerification(texte) {
   // (recette Sparkso Universités, 11/09/2026).
   sectionResultat.scrollIntoView({ behavior: 'smooth', block: 'start' });
   sectionResultat.replaceChildren(...fragments);
+  carteDepot.hidden = true;
+  carteFichier.hidden = false;
+  nomFichier.textContent = sourceNom;
   sectionDonnees.hidden = !conforme;
   resultatDonnees.textContent = '';
   champDonnees.value = '';
@@ -1291,6 +1369,7 @@ function verifierDepuisLien() {
   const texte = temoinDuLien();
   if (!texte) return;
   champTexte.value = texte;
+  sourceNom = 'witness received by link';
   lancerVerification(texte);
 }
 window.addEventListener('hashchange', verifierDepuisLien);
@@ -1313,6 +1392,7 @@ zoneDepot.addEventListener('drop', async evenement => {
   if (!fichier) return;
   const texte = await fichier.text();
   champTexte.value = texte;
+  sourceNom = fichier.name;
   lancerVerification(texte);
 });
 champFichier.addEventListener('change', async () => {
@@ -1320,23 +1400,24 @@ champFichier.addEventListener('change', async () => {
   if (!fichier) return;
   const texte = await fichier.text();
   champTexte.value = texte;
+  sourceNom = fichier.name;
   lancerVerification(texte);
 });
 
 document.getElementById('btn-verifier').addEventListener('click', () => {
   const texte = champTexte.value.trim();
+  sourceNom = 'pasted witness';
   if (!texte) { afficherErreur('Drop, choose or paste a witness first.'); return; }
   lancerVerification(texte);
 });
 document.getElementById('btn-exemple').addEventListener('click', () => {
   champTexte.value = JSON.stringify(EXEMPLE, null, 2);
+  sourceNom = 'example from the specification';
   lancerVerification(champTexte.value);
 });
 document.getElementById('btn-effacer').addEventListener('click', () => {
   champTexte.value = '';
-  sectionResultat.hidden = true;
-  sectionDonnees.hidden = true;
-  temoinCourant = null;
+  montrerDepot();
 });
 
 // Optional comparison with the original data (SPEC.md §9, last paragraph).
